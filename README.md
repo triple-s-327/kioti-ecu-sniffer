@@ -30,6 +30,25 @@ source venv/bin/activate
 python3 ecu_connection.py
 ```
 
+### Protocol Discovery
+
+Automatically detects ECU communication protocol and discovers all available PIDs for querying.
+
+**Features:**
+- Automatic protocol detection and identification
+- Standard OBD-II PID scanning (Mode 01)
+- Optional manufacturer-specific PID scanning
+- JSON and human-readable output formats
+- Comprehensive logging of discovery operations
+
+**Usage:**
+```bash
+cd "Protocol Discovery"
+./setup_protocol_discovery.sh
+source venv/bin/activate
+python3 protocol_discovery.py
+```
+
 ## Data Collection Plan
 
 The project aims to collect ECU data during the following operational scenarios:

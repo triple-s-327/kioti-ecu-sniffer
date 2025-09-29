@@ -1,6 +1,6 @@
 # Goals of this Project
 - Establish and maintain a stable, self-healing connection to an ECU via Bluetooth OBD2 communication tool
-- Learn the communication protocol of a Kioti NS4710 tractor ECU; actively query all PIDs and record responses to a data folder
+- Learn the communication protocol of a Kioti tractor ECU (using the NS4710 as baseline); actively query all PIDs and record responses to a data folder
 - Collect data for a cold start with 5 minute warm-up period; idle operations after warm-up for a 2 minute period; varying engine RPM after warm-up for a 2 minute period; operation of hydraulics after warm-up for a 2 minute period; and operation of the PTO for a 30 second period 
 - Maintain LOG files with date-time stamp for all operations
 - Provision all data for later use in development of a GUI (do not develop the GUI at this time)
