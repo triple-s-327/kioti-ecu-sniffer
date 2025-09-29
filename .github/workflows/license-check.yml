@@ -1,0 +1,61 @@
+name: License Compliance Check
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check for GPL-3.0 with Commons Clause headers in Python files
+      run: |
+        echo "Checking Python files for license headers..."
+        MISSING_LICENSE=()
+
+        while IFS= read -r -d '' file; do
+          if ! grep -q "GPL-3.0 with Commons Clause" "$file"; then
+            MISSING_LICENSE+=("$file")
+          fi
+        done < <(find . -name "*.py" -type f -print0)
+
+        if [ ${#MISSING_LICENSE[@]} -gt 0 ]; then
+          echo "❌ The following Python files are missing GPL-3.0 with Commons Clause license headers:"
+          printf '%s\n' "${MISSING_LICENSE[@]}"
+          exit 1
+        else
+          echo "✓ All Python files contain proper license headers"
+        fi
+
+    - name: Check for GPL-3.0 with Commons Clause headers in shell scripts
+      run: |
+        echo "Checking shell scripts for license headers..."
+        MISSING_LICENSE=()
+
+        while IFS= read -r -d '' file; do
+          if ! grep -q "GPL-3.0 with Commons Clause" "$file"; then
+            MISSING_LICENSE+=("$file")
+          fi
+        done < <(find . -name "*.sh" -type f -print0)
+
+        if [ ${#MISSING_LICENSE[@]} -gt 0 ]; then
+          echo "❌ The following shell scripts are missing GPL-3.0 with Commons Clause license headers:"
+          printf '%s\n' "${MISSING_LICENSE[@]}"
+          exit 1
+        else
+          echo "✓ All shell scripts contain proper license headers"
+        fi
+
+    - name: Check for LICENSE file
+      run: |
+        if [ ! -f "LICENSE" ] && [ ! -f "LICENSE.md" ] && [ ! -f "LICENSE.txt" ]; then
+          echo "❌ No LICENSE file found in repository root"
+          exit 1
+        else
+          echo "✓ LICENSE file exists"
+        fi

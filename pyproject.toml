@@ -1,0 +1,81 @@
+# Kioti ECU Sniffer - Package Configuration
+# GPL-3.0 with Commons Clause License
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kioti-ecu-sniffer"
+version = "0.1.0"
+description = "Self-healing Bluetooth OBD2 connection tool for reverse engineering and monitoring Kioti tractor ECU communication protocols"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPL-3.0 with Commons Clause"}
+authors = [
+    {name = "triple-s-327", email = "triple_s_327@outlook.com"}
+]
+keywords = [
+    "obd2",
+    "bluetooth",
+    "ecu",
+    "tractor",
+    "kioti",
+    "right-to-repair",
+    "reverse-engineering",
+    "protocol-analysis",
+    "agricultural-equipment"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: System :: Hardware",
+]
+dependencies = [
+    "pyserial>=3.5",
+    "pybluez>=0.23",
+    "obd>=0.7.1"
+]
+
+[project.urls]
+Homepage = "https://github.com/triple-s-327/kioti-ecu-sniffer"
+Repository = "https://github.com/triple-s-327/kioti-ecu-sniffer"
+Issues = "https://github.com/triple-s-327/kioti-ecu-sniffer/issues"
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "pip-audit>=2.0.0",
+    "bandit>=1.7.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ecu_connection*", "protocol_discovery*", "data_capture*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+
+[tool.flake8]
+max-line-length = 100
+max-complexity = 10
+exclude = [
+    ".git",
+    "__pycache__",
+    "venv",
+    ".venv",
+    "build",
+    "dist"
+]
