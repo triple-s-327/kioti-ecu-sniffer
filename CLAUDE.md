@@ -18,6 +18,6 @@
 
 # Workflow
 - Start each session with a review of the 3 most recent CHANGELOG files, as available, to determine next steps
-- Use gh cli for GitHub operations following standard practices; include GPL-3.0 with Commons Clause license statements in repositories and files
+- Use gh cli for GitHub operations following standard practices (user triple-s-327); include GPL-3.0 with Commons Clause license statements in repositories and files
 - Create commits at logical completion points: feature completion, bug fixes, or when explicitly requested by user
 - Upon receiving the /exit command, create a final commit with CHANGELOG file (date-time stamped) summarizing key changes, what worked, and what didn't work
