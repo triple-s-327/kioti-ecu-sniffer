@@ -49,17 +49,38 @@ source venv/bin/activate
 python3 protocol_discovery.py
 ```
 
-## Data Collection Plan
+### Data Capture
 
-The project aims to collect ECU data during the following operational scenarios:
+Captures ECU operational data during specific scenarios with automated timing and self-healing connection management.
 
+**Features:**
+- Scenario-based recording with automated timing control
+- Cold start with 5-minute warm-up period monitoring
+- 2-minute idle, varying RPM, and hydraulics operation tracking
+- 30-second PTO operation recording
+- Automatic PID detection and configuration
+- Configurable sampling rate (default: 1 Hz)
+- CSV output for data analysis
+- JSON metadata with session information
+- Connection health monitoring with automatic reconnection
+- Emergency stop capability and real-time progress indicators
+
+**Usage:**
+```bash
+cd "Data Capture"
+./setup_data_capture.sh
+source "../ECU Connection/venv/bin/activate"
+python3 data_capture.py
+```
+
+**Operational Scenarios:**
 1. **Cold start with warm-up**: 5-minute period
 2. **Idle operations**: 2-minute period after warm-up
 3. **Varying engine RPM**: 2-minute period after warm-up
 4. **Hydraulic operations**: 2-minute period after warm-up
 5. **PTO operation**: 30-second period
 
-All data is timestamped and logged for analysis.
+All data is timestamped, logged, and saved in CSV format for analysis.
 
 ## Requirements
 
