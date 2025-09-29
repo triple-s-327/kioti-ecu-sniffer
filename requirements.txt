@@ -1,0 +1,11 @@
+# Kioti ECU Sniffer - Python Dependencies
+# GPL-3.0 with Commons Clause License
+
+# Serial communication for OBD2 adapters
+pyserial>=3.5
+
+# Bluetooth communication support
+pybluez>=0.23
+
+# OBD-II interface and protocol handling
+obd>=0.7.1
