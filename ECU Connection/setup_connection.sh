@@ -46,7 +46,7 @@ pip install \
 
 # Create necessary directories
 echo "Creating project directories..."
-mkdir -p data
+mkdir -p ../data
 mkdir -p logs
 
 # Set permissions for Bluetooth access
