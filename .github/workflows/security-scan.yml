@@ -1,0 +1,40 @@
+name: Python Security Scanning
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    # Run weekly on Mondays at 00:00 UTC
+    - cron: '0 0 * * 1'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies for scanning
+      run: |
+        python -m pip install --upgrade pip
+        pip install pip-audit
+
+    - name: Install project dependencies
+      run: |
+        pip install pyserial pybluez obd
+
+    - name: Run pip-audit (vulnerability scan)
+      run: |
+        pip-audit --desc --skip-editable
+
+    - name: Run Bandit (security linting)
+      run: |
+        pip install bandit
+        bandit -r "ECU Connection/" "Protocol Discovery/" "Data Capture/" -ll -f txt || true
